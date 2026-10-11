@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # 本地全量包安装脚本（放在仓库内避免 /tmp 被清理）
 set -eu
-PKG="/Users/chengjianfei/青崖输入法/target/pkg/qingjian-0.2.1-dev-4a3e963+-macos-arm64.pkg"
-[[ -f "$PKG" ]] || { echo "找不到安装包: $PKG" >&2; exit 1; }
+PKG="$(ls -t "$(dirname "$0")"/target/pkg/qingjian-*-macos-arm64.pkg | head -1)"
+[[ -f "$PKG" ]] || { echo "找不到安装包（先跑 apps/macos/scripts/bundle.sh --pkg）" >&2; exit 1; }
+echo "安装: $PKG"
 rm -rf "/Library/Input Methods/Qingjian.app"
 installer -pkg "$PKG" -target /
 pkill -x qingjian-macos 2>/dev/null || true

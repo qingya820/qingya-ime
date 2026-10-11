@@ -1,0 +1,9 @@
+# 青崖个人自定义词库（词	空格分隔音节拼音	词频）
+# 打包（仓库根目录）：
+#   cargo run --release -q -p qingjian-dict-convert -- \
+#     --out-dir "/Users/$USER/Library/Application Support/Qingjian/dicts" \
+#     pack dict --input tools/qingya-data/qingya-custom.tsv --name "青崖自定义词库" --license MIT
+# 产物默认叫 dict.qj，改名 qingya-custom.qj；Windows 放 %APPDATA%\Qingjian\dicts\
+青崖	qing ya	9999
+青崖输入法	qing ya shu ru fa	9999
+补上	bu shang	50000
