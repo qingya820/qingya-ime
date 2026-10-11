@@ -1,7 +1,7 @@
 {
   "extends": "qingjian",
   "schema": 1,
-  "meta": { "id": "wechat", "name": "微信绿", "author": "青简", "license": "GPL-3.0-or-later" },
+  "meta": { "id": "wechat", "name": "微信绿", "author": "青崖", "license": "GPL-3.0-or-later" },
 
   "variables": {
     "accent": { "light": "#07c160", "dark": "#06ad56" },

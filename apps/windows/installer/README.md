@@ -1,4 +1,4 @@
-# 青简 Windows 安装包
+# 青崖 Windows 安装包
 
 用 [Inno Setup](https://jrsoftware.org/isinfo.php) 打的安装包，把 TSF DLL（64 位与 32 位各一份）、Server、设置程序与随包数据一起装进
 `C:\Program Files\Qingjian`，注册文本服务，并设登录自启。对应 macOS 的 pkg。
@@ -28,7 +28,7 @@ Server 与设置程序按 **exe 相对**定位随包资源（`qingjian_platform:
 
 1. **结束旧进程**：`PrepareToInstall` 里 `taskkill` Server 与设置程序（只有这两个 exe 要覆盖）。
 2. **应用容器权限**：`icacls` 给安装目录加 `ALL APPLICATION PACKAGES`（SID `*S-1-15-2-1`）读+执行。
-   不加的话 UWP/AppContainer 应用（任务栏搜索、设置）读不到 DLL，切不到青简。
+   不加的话 UWP/AppContainer 应用（任务栏搜索、设置）读不到 DLL，切不到青崖。
 3. **注册文本服务**：64 位 DLL 用 `regsvr32`、32 位 DLL 用 `SysWOW64\regsvr32`，各注册一次（各自写进自己视图的 HKCR，`CTF\TIP` 两边共用；要管理员——安装程序本就提权）。
 4. **清旧 DLL**：装完删历次版本留下的 `qingjian_tsf*.dll`，仍被应用占用的登记成重启后删（`RestartReplace`）。
 5. **登录自启**：「启动」文件夹放 Server 快捷方式（Explorer 走 ShellExecute 拉起才拿到 uiAccess；计划任务拿不到）。

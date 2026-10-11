@@ -25,13 +25,13 @@ pub struct RouterConfig {
     /// 候选窗口外观（`[general] appearance`，兼容旧写法见 [`qingjian_platform::GeneralConfig::appearance`]）。
     pub appearance: Appearance,
 
-    /// 候选窗口 / 状态条由青简渲染器还是 GDI 画（`[general] renderer`）。
+    /// 候选窗口 / 状态条由青崖渲染器还是 GDI 画（`[general] renderer`）。
     pub renderer: CandidateRenderer,
 
-    /// 候选窗口字体的字族名（`[general] font`），空为系统字体；只对青简渲染器生效。
+    /// 候选窗口字体的字族名（`[general] font`），空为系统字体；只对青崖渲染器生效。
     pub font: String,
 
-    /// 候选窗口主题 id（`[general] theme`）；只对青简渲染器生效。
+    /// 候选窗口主题 id（`[general] theme`）；只对青崖渲染器生效。
     pub theme: String,
 
     /// 候选字、译文字号（`[general] candidate_font_size` / `annotation_font_size`）。

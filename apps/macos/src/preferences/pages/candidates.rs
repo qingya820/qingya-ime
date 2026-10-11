@@ -30,7 +30,7 @@ pub struct CandidatesPage {
     /// 横排时上 / 下键展开成多行矩阵。
     horizontal_grid: Retained<NSButton>,
 
-    /// 青简渲染器 / 系统绘制。
+    /// 青崖渲染器 / 系统绘制。
     renderer: Retained<NSPopUpButton>,
 
     /// 候选窗字体：搜索框 + 列表。
@@ -74,7 +74,7 @@ impl CandidatesPage {
         note(
             layout,
             mtm,
-            "主题只对青简渲染器生效；樱花只有浅色，其余主题按上面的外观切换浅色与深色。",
+            "主题只对青崖渲染器生效；樱花只有浅色，其余主题按上面的外观切换浅色与深色。",
         );
         let layout_titles: Vec<String> = LayoutMode::ALL
             .iter()
@@ -106,12 +106,12 @@ impl CandidatesPage {
             Setting::Renderer,
             target,
         );
-        note(layout, mtm, "青简渲染器让候选窗口在各平台一致。");
+        note(layout, mtm, "青崖渲染器让候选窗口在各平台一致。");
         let font = FontPicker::build(layout, mtm, "字体", available_families(mtm));
         note(
             layout,
             mtm,
-            "只对青简渲染器生效；没装的字体自动回到系统字体。",
+            "只对青崖渲染器生效；没装的字体自动回到系统字体。",
         );
         let candidate_size =
             size_field(layout, mtm, "候选字号", Setting::CandidateFontSize, target);
@@ -120,7 +120,7 @@ impl CandidatesPage {
         note(
             layout,
             mtm,
-            "单位是点，按回车生效；清空或填 0 回到主题的字号。行高跟着候选字号缩放。只对青简渲染器生效。",
+            "单位是点，按回车生效；清空或填 0 回到主题的字号。行高跟着候选字号缩放。只对青崖渲染器生效。",
         );
         let reset = button(mtm, "恢复主题字号", Setting::ResetFontSizes, target);
         layout.place(&reset, CONTROL_X, 140.0, ROW_HEIGHT + 4.0);

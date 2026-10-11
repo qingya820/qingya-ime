@@ -112,7 +112,7 @@ pub fn corrected_japanese() -> Frame {
 pub fn probe() -> Frame {
     Frame {
         preedit: None,
-        rows: vec![Row::plain(0, "青简 hello 🙂 日本語 骨直曜")],
+        rows: vec![Row::plain(0, "青崖 hello 🙂 日本語 骨直曜")],
         highlighted: None,
         footer: None,
         sentence: None,

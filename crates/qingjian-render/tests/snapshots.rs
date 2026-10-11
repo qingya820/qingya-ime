@@ -195,7 +195,7 @@ fn still(
     renderer.render(frame, layout, theme, scale).unwrap()
 }
 
-/// 过渡（青简绿的高亮条）：高亮从第 1 项移到第 4 项，取 60 ms 处的一帧当快照；播完的最后一帧要与直接画第 4 项高亮逐像素一致。
+/// 过渡（青崖绿的高亮条）：高亮从第 1 项移到第 4 项，取 60 ms 处的一帧当快照；播完的最后一帧要与直接画第 4 项高亮逐像素一致。
 fn transition_mid(renderer: &mut Renderer) -> Shot {
     let theme = Theme::light();
     let from = scenes::nihao();

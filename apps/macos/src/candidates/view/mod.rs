@@ -168,7 +168,7 @@ impl CandidateView {
         }
     }
 
-    /// 渲染器主题，只对青简渲染器生效。配置或主题文件变了才会调，每次都当场重画。
+    /// 渲染器主题，只对青崖渲染器生效。配置或主题文件变了才会调，每次都当场重画。
     pub fn set_render_theme(&self, theme: qingjian_render::Theme) {
         *self.ivars().render_theme.borrow_mut() = theme.clone();
         if let Some(bitmap) = &mut *self.ivars().bitmap.borrow_mut() {
@@ -185,7 +185,7 @@ impl CandidateView {
         Some(bitmap)
     }
 
-    /// 青简渲染器 / 系统绘制。渲染器字体库加载失败就留在系统绘制。
+    /// 青崖渲染器 / 系统绘制。渲染器字体库加载失败就留在系统绘制。
     pub fn set_renderer(&self, renderer: CandidateRenderer) {
         let mut bitmap = self.ivars().bitmap.borrow_mut();
         match renderer {
@@ -293,7 +293,7 @@ impl CandidateView {
         }
     }
 
-    /// 在用青简渲染器（阴影画在位图里）；否则是 AppKit 逐项绘制，要系统阴影。
+    /// 在用青崖渲染器（阴影画在位图里）；否则是 AppKit 逐项绘制，要系统阴影。
     pub fn uses_bitmap(&self) -> bool {
         self.ivars().bitmap.borrow().is_some()
     }

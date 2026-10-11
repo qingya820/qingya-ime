@@ -161,7 +161,7 @@ impl Theme {
     }
 
     /// 从 `theme.json` 的内容读主题。可以 `extends` 内置主题；引用不到的名字只记警告。
-    /// 没写 `extends` 时以青简绿为底（青简绿自己除外）。
+    /// 没写 `extends` 时以青崖绿为底（青崖绿自己除外）。
     pub fn from_json(json: &str, dark: bool) -> Result<Self, ThemeError> {
         let value = extends::resolve(json, &builtin_source, ROOT_THEME)?;
         let file: ThemeFile = serde_json::from_value(value)?;
@@ -394,7 +394,7 @@ mod tests {
         let theme = Theme::from_json(
             r##"{
                 "$schema": "https://qingjian.app/schema/theme-1.json",
-                "extends": "qingjian", // 以青简绿为底
+                "extends": "qingjian", // 以青崖绿为底
                 "schema": 1,
                 "meta": { "id": "jsonc", "name": "注释", },
                 /* 只改高亮色 */

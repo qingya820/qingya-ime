@@ -3,7 +3,7 @@
 {
   "extends": "qingjian",
   "schema": 1,
-  "meta": { "id": "sakura", "name": "樱花", "author": "青简", "license": "GPL-3.0-or-later", "appearance": "light" },
+  "meta": { "id": "sakura", "name": "樱花", "author": "青崖", "license": "GPL-3.0-or-later", "appearance": "light" },
 
   "variables": {
     "text": "#47344f",
@@ -150,7 +150,7 @@
         "keyframes": [{ "at": 0, "y": 0, "rotate": 0 }, { "at": 0.5, "y": 3, "rotate": 14 }, { "at": 1, "y": 0, "rotate": 0 }] }
     },
 
-    // 吊牌上的「青简」是文字不是图，位置跟着人物图走
+    // 吊牌上的「青崖」是文字不是图，位置跟着人物图走
     "sakura-character": {
       "type": "frame", "position": "absolute", "inset": [-72, "auto", "auto", -24], "width": 137, "height": 150,
       "fill": { "image": "images/character.png", "scale": 2 },

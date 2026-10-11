@@ -1,4 +1,4 @@
-﻿; 青简 Windows 输入法安装脚本（Inno Setup）。
+﻿; 青崖 Windows 输入法安装脚本（Inno Setup）。
 ;
 ; 装到 Program Files\Qingjian（64 位），把 TSF DLL（64 位与 32 位各一份，见 README「安装布局」）、Server、设置程序与随包数据装在一起，
 ; 然后：① 给安装目录加 ALL APPLICATION PACKAGES 读+执行权限（UWP/AppContainer 应用——任务栏搜索、
@@ -24,8 +24,8 @@
 #ifndef AppVersionNumeric
   #define AppVersionNumeric AppVersion
 #endif
-#define AppName "青简"
-#define Publisher "青简"
+#define AppName "青崖输入法"
+#define Publisher "青崖输入法"
 #define WebsiteUrl "https://qingjian.im"
 ; 脚本相对仓库根（ime/）：installer → windows → apps → ime
 #define Repo "..\..\.."
@@ -64,7 +64,7 @@ Name: "chs"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
 [Messages]
 ; 完成页：DLL 会装进每个应用进程，装之前就开着的应用要用新版必须重启（见文件头「升级」）。
 ; 这是最容易被误解成「设置/新版没生效」的一点，所以放在完成页明说。
-FinishedLabel=安装完成。请注销后重新登录（或重启电脑），青简才会在所有应用里生效。%n%n不方便注销的话，先关掉再重新打开要打字的应用也可以。
+FinishedLabel=安装完成。请注销后重新登录（或重启电脑），青崖才会在所有应用里生效。%n%n不方便注销的话，先关掉再重新打开要打字的应用也可以。
 
 [Files]
 ; —— 二进制 ——
@@ -107,14 +107,14 @@ Source: "{#Repo}\assets\sample\dict.tsv";        DestDir: "{app}\assets\sample";
 Source: "{#Repo}\target\release\qingjian-server.exe";   DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\青简设置"; Filename: "{app}\qingjian-settings.exe"; IconFilename: "{app}\qingjian.ico"
-Name: "{group}\卸载青简"; Filename: "{uninstallexe}"
+Name: "{group}\青崖输入法设置"; Filename: "{app}\qingjian-settings.exe"; IconFilename: "{app}\qingjian.ico"
+Name: "{group}\卸载青崖"; Filename: "{uninstallexe}"
 ; 登录自启：登录时 Explorer 走 ShellExecute 拉起本快捷方式 → AppInfo 授予 uiAccess，候选窗才能盖过商店 / 任务栏搜索。
 ; 用 {commonstartup}（所有用户「启动」文件夹）而非 {userstartup}：本安装器是 admin 机器级安装，
 ; admin 模式下写每用户区会落到「谁提权就写谁」的 profile（Inno 会告警且可能不是目标用户）；
 ; 机器级「启动」项对每个登录用户都在其会话里由该用户的 Explorer 拉起，仍是 per-user 运行、仍授予 uiAccess。
 ; （计划任务直接拉起拿不到 uiAccess，故不用 schtasks。）
-Name: "{commonstartup}\青简 Server"; Filename: "{app}\qingjian-server.exe"; WorkingDir: "{app}"; IconFilename: "{app}\qingjian.ico"
+Name: "{commonstartup}\青崖 Server"; Filename: "{app}\qingjian-server.exe"; WorkingDir: "{app}"; IconFilename: "{app}\qingjian.ico"
 
 [Run]
 ; ① UWP/AppContainer 应用要能读安装目录才能加载 DLL（*S-1-15-2-1 = ALL APPLICATION PACKAGES，按 SID 与语言无关）。

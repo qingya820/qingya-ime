@@ -1,0 +1,67 @@
+# fork 专用：手动触发的 Windows 安装包构建（不走发版流程，不建 release）。
+# Actions 页选 fork-windows-build → Run workflow，产物在 Artifacts 的 qingya-windows-installer。
+name: fork-windows-build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    env:
+      QINGJIAN_UIACCESS: '0'
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: 1.96.0
+          targets: i686-pc-windows-msvc
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Fetch product data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tools/release/data-fetch.sh
+          ls -la data/generated data/generated/dicts
+
+      # 官方数据包里的英文词表/译词是旧版，用 fork 仓库里 ECDICT 扩充后的版本覆盖
+      - name: Override English data with fork version
+        run: |
+          cp assets/lexicon/english.tsv data/generated/english.tsv
+          cargo run --release -q -p qingjian-dict-convert -- pack glossary --language en \
+            --input assets/glossary/glossary-en.tsv \
+            --name "青崖释义表（en）" --license MIT \
+            --attribution "LLM 生成（DeepSeek），qingjian-gloss-gen；中文→英文补充反转自 ECDICT（skywind3000/ECDICT，MIT）"
+          wc -l data/generated/english.tsv
+          ls -la data/generated/glossary-en.qj
+
+      - name: Install Inno Setup 7.1.0
+        shell: pwsh
+        run: |
+          $url = 'https://github.com/jrsoftware/issrc/releases/download/is-7_1_0/innosetup-7.1.0-x64.exe'
+          $expected = '0362a383ed217d4c4239b5933866dd96d3eb2102737da92f80f6057a4b40df2f'
+          $exe = Join-Path $env:RUNNER_TEMP 'innosetup.exe'
+          Invoke-WebRequest -Uri $url -OutFile $exe
+          $actual = (Get-FileHash -Path $exe -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($actual -ne $expected) { throw "Inno Setup 安装程序 SHA-256 不符：$actual" }
+          Start-Process -FilePath $exe -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-' -Wait
+          & "${env:ProgramFiles}\Inno Setup 7\ISCC.exe" --version
+
+      - name: Build installer
+        shell: pwsh
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File apps\windows\installer\build.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qingya-windows-installer
+          path: target/installer/*.exe
+          retention-days: 90

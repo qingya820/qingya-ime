@@ -127,7 +127,7 @@ impl CandidateWindow {
         self.view.set_layout(layout);
     }
 
-    /// 青简渲染器 / 系统绘制。下一帧生效。青简渲染器的阴影由主题画进位图，系统阴影关掉；
+    /// 青崖渲染器 / 系统绘制。下一帧生效。青崖渲染器的阴影由主题画进位图，系统阴影关掉；
     /// 只有它给点击区域，所以也只有它收鼠标（系统绘制时点击穿过去）。
     pub fn set_renderer(&self, renderer: CandidateRenderer) {
         self.view.set_renderer(renderer);
@@ -140,17 +140,17 @@ impl CandidateWindow {
         self.view.set_click_handler(handler);
     }
 
-    /// 在用青简渲染器（而不是系统绘制）。
+    /// 在用青崖渲染器（而不是系统绘制）。
     pub fn uses_bitmap(&self) -> bool {
         self.view.uses_bitmap()
     }
 
-    /// 渲染器主题（按 `[general] theme` 从主题库取出的），只对青简渲染器生效。
+    /// 渲染器主题（按 `[general] theme` 从主题库取出的），只对青崖渲染器生效。
     pub fn set_render_theme(&self, theme: qingjian_render::Theme) {
         self.view.set_render_theme(theme);
     }
 
-    /// 候选窗字体（字族名，空为系统字体），只对青简渲染器生效。
+    /// 候选窗字体（字族名，空为系统字体），只对青崖渲染器生效。
     pub fn set_font(&self, font: &str) {
         self.view.set_font(font);
     }
@@ -196,8 +196,8 @@ impl CandidateWindow {
     }
 }
 
-/// 建一块面板并把内容视图装进去：无边框、不抢焦点、透明背景带系统阴影（用青简渲染器时再关）、
-/// 先不吃鼠标（用青简渲染器时再开，见 [`CandidateWindow::set_renderer`]）。
+/// 建一块面板并把内容视图装进去：无边框、不抢焦点、透明背景带系统阴影（用青崖渲染器时再关）、
+/// 先不吃鼠标（用青崖渲染器时再开，见 [`CandidateWindow::set_renderer`]）。
 fn build_panel(mtm: MainThreadMarker, view: &CandidateView) -> Retained<NSPanel> {
     let panel = NSPanel::initWithContentRect_styleMask_backing_defer(
         mtm.alloc::<NSPanel>(),

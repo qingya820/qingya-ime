@@ -2,24 +2,21 @@
   <img src="assets/icon/qingjian-mark.svg" alt="青简竹简图标" height="108">
 </p>
 
-<h1 align="center">青简 Qingjian</h1>
+<h1 align="center">青崖输入法</h1>
 
 <p align="center"><strong>好好输入，顺便多认识一个词。</strong></p>
 
 <p align="center">
-  <a href="https://qingjian.app/download"><img src="https://img.shields.io/github/v/release/qingjian-team/qingjian?label=stable" alt="stable release"></a>
-  <a href="https://github.com/qingjian-team/qingjian/stargazers"><img src="https://img.shields.io/github/stars/qingjian-team/qingjian?style=flat&amp;label=Stars" alt="GitHub Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue" alt="License: GPL-3.0-or-later"></a>
-  <a href="https://qingjian.app/docs/getting-started/install"><img src="https://img.shields.io/badge/macOS-13%2B-blue" alt="macOS 13+"></a>
-  <a href="https://qingjian.app/docs/getting-started/install"><img src="https://img.shields.io/badge/Windows-10%2F11-blue" alt="Windows 10/11"></a>
-  <a href="https://qingjian.app/docs/getting-started/linux"><img src="https://img.shields.io/badge/Linux-Fcitx5%20manual-lightgrey" alt="Linux Fcitx5，手动启动"></a>
+  <img src="https://img.shields.io/badge/macOS-13%2B-blue" alt="macOS 13+">
+  <img src="https://img.shields.io/badge/Windows-10%2F11-blue" alt="Windows 10/11">
+  <img src="https://img.shields.io/badge/Linux-Fcitx5%20manual-lightgrey" alt="Linux Fcitx5，手动启动">
 </p>
 
-青简是一款输入法。你可以像平常一样打字：输入拼音、选择候选、写完整句；候选旁的一条译词，让语言学习自然发生在日常输入里。译词始终只是辅助信息，不会盖过你要输入的文字。
+> **青崖输入法**是 [青简 Qingjian](https://github.com/qingjian-team/qingjian)（GPL-3.0-or-later）的个人改名分支，向原作者致谢。
+> 青崖与青简的差异目前仅限：应用显示名、bundle 标识、默认关闭检查更新。随包数据的来源与许可见下方原 README 与 `docs/design/landscape.md`。
 
-https://github.com/user-attachments/assets/d145fde9-a641-4543-8b15-dd7a2685de3d
-
-视频演示了青简在 macOS 上的整句输入、候选重排和候选译词。
+青崖是一款输入法。你可以像平常一样打字：输入拼音、选择候选、写完整句；候选旁的一条译词，让语言学习自然发生在日常输入里。译词始终只是辅助信息，不会盖过你要输入的文字。
 
 ## 下载与开始使用
 

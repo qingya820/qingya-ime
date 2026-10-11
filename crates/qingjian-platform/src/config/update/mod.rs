@@ -20,7 +20,8 @@ pub struct UpdateConfig {
 impl Default for UpdateConfig {
     fn default() -> Self {
         Self {
-            check: true,
+            // 青崖分支默认不检查更新：上游的更新索引在 qingjian.app，不能替用户去请求
+            check: false,
             channel: UpdateChannel::default(),
         }
     }

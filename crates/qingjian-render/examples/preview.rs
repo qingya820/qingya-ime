@@ -174,7 +174,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     for probe in [
-        "青简 hello 🙂 日本語 骨直曜",
+        "青崖 hello 🙂 日本語 骨直曜",
         "開発(かいはつ)する",
         "int. hello · int. hi",
     ] {

@@ -3,7 +3,7 @@
 //! **没签名的 exe 带 uiAccess=true 会直接起不来**（「从服务器返回了一个参照」），所以缺省不带，签过名的构建才设
 //! `QINGJIAN_UIACCESS=1` 打开（`build.ps1 -Sign`）；不带的代价是候选窗在 UWP 宿主里可能被盖住（用户文档已列为已知问题）。
 //! manifest 缺省含 PerMonitorV2 DPI 感知，与运行时那次 `SetProcessDpiAwarenessContext` 一致。
-//! 另把青简图标嵌进 exe（任务管理器 / 启动项里显示）。
+//! 另把青崖图标嵌进 exe（任务管理器 / 启动项里显示）。
 
 use embed_manifest::manifest::ExecutionLevel;
 use embed_manifest::{embed_manifest, new_manifest};

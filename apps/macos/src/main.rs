@@ -1,4 +1,4 @@
-//! 青简 macOS 输入法壳（IMK）。
+//! 青崖 macOS 输入法壳（IMK）。
 //!
 //! 按键进 [`qingjian_core::Engine`]，候选画在自绘 NSPanel 里。数字选词，空格上首选，
 //! 回车上屏拼音本身，退格删一个，Esc 清空，上下键移动高亮。
@@ -40,10 +40,10 @@ fn main() {
     // 安装器的 postinstall 以登录用户身份调 `--register`：注册、启用并切成当前输入源后直接退出，不起 IMK
     if std::env::args().any(|argument| argument == "--register") {
         match app::input_source::register_main_bundle() {
-            Ok(true) => println!("青简输入源已注册、启用并切成当前输入源"),
-            Ok(false) => println!("青简输入源已注册并启用，请在输入法菜单里选择「青简」"),
+            Ok(true) => println!("青崖输入源已注册、启用并切成当前输入源"),
+            Ok(false) => println!("青崖输入源已注册并启用，请在输入法菜单里选择「青崖」"),
             Err(error) => {
-                eprintln!("青简输入源注册失败：{error}");
+                eprintln!("青崖输入源注册失败：{error}");
                 std::process::exit(1);
             }
         }
@@ -66,6 +66,15 @@ fn main() {
     tracing::info!(class = %controller_class.name().to_string_lossy(), "控制器类已注册");
 
     let mtm = MainThreadMarker::new().expect("输入法入口必须在主线程");
+
+    // NSApplication 必须先于任何 AppKit 界面对象创建并完成启动：host::init 里会建
+    // NSStatusItem（菜单栏中/英指示器）与 NSPanel（候选窗）。在 macOS 13.4 上，若
+    // sharedApplication / WindowServer 连接尚未建立就创建 NSStatusItem，会在
+    // NSCGSStatusItem 里直接 NSCGSPanic（SIGTRAP），进程被 launchd 反复拉起、反复崩，
+    // 表现为输入法能出现在列表里但无法输入。
+    let app = NSApplication::sharedApplication(mtm);
+    unsafe { app.finishLaunching() };
+
     if let Err(error) = host::init(mtm, &info) {
         tracing::error!(%error, "Engine 初始化失败");
         std::process::exit(1);
@@ -85,5 +94,5 @@ fn main() {
         );
         std::process::exit(1);
     };
-    NSApplication::sharedApplication(mtm).run();
+    app.run();
 }

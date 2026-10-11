@@ -2,7 +2,7 @@
 
 use qingjian_core::Candidate;
 
-/// annotation 片段的种类，决定颜色；青简渲染器的主题还按它挑着画。
+/// annotation 片段的种类，决定颜色；青崖渲染器的主题还按它挑着画。
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Tone {
     /// 译文。

@@ -100,14 +100,14 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
         libc::signal(libc::SIGINT, stop as *const () as libc::sighandler_t);
     }
     let socket = qingjian_linux_server::ipc::socket_path();
-    tracing::info!(path = %socket.display(), "青简 Linux Server 启动");
+    tracing::info!(path = %socket.display(), "青崖 Linux Server 启动");
     qingjian_linux_server::ipc::serve_socket(socket, &mut router)?;
     Ok(())
 }
 fn main() {
     #[cfg(target_os = "linux")]
     if let Err(error) = run() {
-        eprintln!("青简启动失败：{error}");
+        eprintln!("青崖启动失败：{error}");
         std::process::exit(1);
     }
     #[cfg(not(target_os = "linux"))]

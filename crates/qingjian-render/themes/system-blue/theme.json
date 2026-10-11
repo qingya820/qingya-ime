@@ -1,7 +1,7 @@
 {
   "extends": "qingjian",
   "schema": 1,
-  "meta": { "id": "system-blue", "name": "系统蓝", "author": "青简", "license": "GPL-3.0-or-later" },
+  "meta": { "id": "system-blue", "name": "系统蓝", "author": "青崖", "license": "GPL-3.0-or-later" },
 
   "variables": {
     "accent": { "light": "#007aff", "dark": "#0a84ff" },

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "meta": { "id": "qingjian", "name": "青简绿", "author": "青简", "license": "GPL-3.0-or-later" },
+  "meta": { "id": "qingjian", "name": "青崖绿", "author": "青崖", "license": "GPL-3.0-or-later" },
 
   "variables": {
     "text": { "light": "#000000d8", "dark": "#ffffffd8" },

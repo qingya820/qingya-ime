@@ -9,7 +9,7 @@ use super::{ThemeError, jsonc};
 const MAX_DEPTH: usize = 4;
 
 /// 展开 `extends`，返回合并后的整份主题。`base` 按 id 给出内置主题的源文件。
-/// 没写 `extends` 的一律以 `root`（青简绿）为底，内置主题与继承链上的每一层都一样，只写几个颜色也能用；
+/// 没写 `extends` 的一律以 `root`（青崖绿）为底，内置主题与继承链上的每一层都一样，只写几个颜色也能用；
 /// `root` 自己是最底层，不再往下找（不然自己继承自己）。
 pub(super) fn resolve(
     json: &str,

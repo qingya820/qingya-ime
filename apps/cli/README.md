@@ -1,6 +1,6 @@
 # qingjian-cli
 
-青简 Core 的命令行壳：不依赖任何平台 API，用来查候选、看排序、量性能、回放评测。改 Core 的任何东西都先在这里验证，再去碰输入法。
+青崖 Core 的命令行壳：不依赖任何平台 API，用来查候选、看排序、量性能、回放评测。改 Core 的任何东西都先在这里验证，再去碰输入法。
 
 ```bash
 cargo run --release -p qingjian-cli -- kaifa            # 查一个拼音

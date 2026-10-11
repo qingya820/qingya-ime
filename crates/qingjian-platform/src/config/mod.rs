@@ -368,7 +368,7 @@ enabled = false
 
 [update]
 # 检查更新：每天向官网（qingjian.app）读一次版本索引，有新版在菜单与设置的「关于」页提示；请求不带任何标识，不自动下载安装
-check = true
+check = false
 # 渠道：stable 只看正式版；beta 还会提示测试版（alpha / beta / rc）
 channel = "stable"
 "#
