@@ -43,14 +43,23 @@ print("现有译词表词条:", len(existing), file=sys.stderr)
 best_word = {}      # code -> (score, original_word)
 gloss = {}          # 中文词 -> set((score, pos, word))
 
+# 词频量纲必须是 wordfreq 的 Zipf×1000（范围约 0–7800，见上游 english.tsv），
+# 混输比分用 english_log_prob = (f/1000 − 9)·ln10。曾误用“2_000_000−排名”
+# （最高近 200 万 = Zipf 2000），导致 chang/yong/dong 这类拼音同形英文词
+# 在「拼音头+英文尾」路径碾压正常拼音，平常/使用/自动全打不出来。
+#
+# 排名→Zipf：Zipf 定律 P(r)=P₁/r，r=1（the）取 Zipf 7.6：
+#   zipf(r) = 7.6 − log10(r)，下限 0（未登录词）。
+ZIPF_R1 = 7.6
+import math
 def to_score(frq, bnc):
     frq = int(frq) if frq.isdigit() else 0
     bnc = int(bnc) if bnc.isdigit() else 0
-    if bnc:
-        return 2_000_000 - bnc           # BNC 排名优先
-    if frq:
-        return 1_000_000 - frq           # 其次当代语料排名
-    return 1                             # 未登录生僻词垫底
+    r = bnc or frq
+    if not r:
+        return 0                         # 无排名生僻词，不能给虚高频次
+    z = ZIPF_R1 - math.log10(r)
+    return max(0, round(z * 1000))
 
 with open(CSV_PATH, encoding="utf-8", newline="") as f:
     reader = csv.DictReader(f)
